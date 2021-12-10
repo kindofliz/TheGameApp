@@ -123,7 +123,7 @@ public class FlyingFishView extends View {
             yellowX = canvasWidth + 21;
             yellowY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
         }
-        canvas.drawCircle(yellowX, yellowY, 10, yellowPaint);
+        canvas.drawCircle(yellowX, yellowY, 15, yellowPaint);
 
         //GREEN BALL
         greenX = greenX - greenSpeed;
@@ -137,7 +137,7 @@ public class FlyingFishView extends View {
             greenX = canvasWidth + 21;
             greenY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
         }
-        canvas.drawCircle(greenX, greenY, 10, greenPaint);
+        canvas.drawCircle(greenX, greenY, 15, greenPaint);
 
         //RED BALL
         redX = redX - redSpeed;
@@ -151,6 +151,7 @@ public class FlyingFishView extends View {
 
                 Intent gameOverIntent = new Intent(getContext(), GameOverActivity.class);
                 gameOverIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                gameOverIntent.putExtra("SCORE", score);
                 getContext().startActivity(gameOverIntent);
             }
         }
@@ -159,14 +160,14 @@ public class FlyingFishView extends View {
             redX = canvasWidth + 21;
             redY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
         }
-        canvas.drawCircle(redX, redY, 20, redPaint);
+        canvas.drawCircle(redX, redY, 22, redPaint);
 
         //DISPLAY THE SCORE
-        canvas.drawText("Score : " + score, 20, 60, scorePaint);
+        canvas.drawText("Score : " + score, 20, 100, scorePaint);
 
         //DISPLAY THE LIVES LEFT
         for (int i = 0; i < 3; i++) {
-            int x = (int) (480 + life[0].getWidth() * 1.5 * i);
+            int x = (int) (680 + life[0].getWidth() * 1.5 * i);
             int y = 30;
 
             //when all lives are still available
@@ -193,7 +194,7 @@ public class FlyingFishView extends View {
     public boolean onTouchEvent(MotionEvent event) {
        if (event.getAction() == MotionEvent.ACTION_DOWN) {
            touch = true;
-           fishSpeed = -22;
+           fishSpeed = -25;
        }
        return true;
     }
